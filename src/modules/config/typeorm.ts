@@ -1,4 +1,6 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { config } from 'dotenv';
+config();
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
     type: 'postgres',
@@ -10,4 +12,6 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
     entities: [`${__dirname}/**/*.entity{.js,.ts}`],
     migrations: [`${__dirname}/migration/{.ts,*.js}`],
     migrationsRun: true,
-  };
+    synchronize: process.env.TYPEORM_SYNCHRONIZE === 'false',
+    logging: process.env.TYPEORM_LOGGING === 'true',
+};

@@ -8,7 +8,7 @@ import { typeOrmConfig } from './modules/config/typeorm';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env.local', '.env'],
+      envFilePath: ['.env'],
     }),
     TypeOrmModule.forRoot(typeOrmConfig),
     BookModule
