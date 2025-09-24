@@ -21,9 +21,11 @@ export class BookService {
     createBook(CreateBookDto: Partial<BookEntity>) {
         return this.UserRepository.save(CreateBookDto);
     }
+    
     updateBook(id: number, book: Partial<BookEntity>) {
         return this.UserRepository.update(id, book);
     }
+
     deleteBook(id: number) {
         return this.UserRepository.delete(id);
     }
