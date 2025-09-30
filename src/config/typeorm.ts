@@ -9,9 +9,9 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    entities: [`${__dirname}/**/*.entity{.js,.ts}`],
-    migrations: [`${__dirname}/migration/{.ts,*.js}`],
+    entities: [__dirname + '/modules/**/*.entity.{ts,js}'],
+    migrations: [__dirname + '/migrations/*.{ts,js}'],
     migrationsRun: true,
-    synchronize: process.env.TYPEORM_SYNCHRONIZE === 'false',
     logging: process.env.TYPEORM_LOGGING === 'true',
+    autoLoadEntities: true,
 };

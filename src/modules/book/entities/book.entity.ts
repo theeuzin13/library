@@ -17,7 +17,7 @@ export class BookEntity{
     @Column({ name: 'gender', nullable: false })
     gender: string;
 
-    @Column({ name: 'price', nullable: false })
+    @Column({ name: 'price', type: 'decimal', nullable: false })
     price: number;
 
     @Column({ name: 'publish_date', type: 'date', nullable: false })
