@@ -7,26 +7,27 @@ import { Repository } from 'typeorm';
 export class BookService {
     constructor(
         @InjectRepository(BookEntity)
-        private readonly UserRepository: Repository<BookEntity>,
+        private readonly bookRepository: Repository<BookEntity>,
     ) {}
 
     getBooks() {
-        return this.UserRepository.find();
+        return this.bookRepository.find();
     }
 
     getBooksById(id: number) {
-        return this.UserRepository.findOneBy({ id });
+        return this.bookRepository.findOneBy({ id });
     }
 
     createBook(CreateBookDto: Partial<BookEntity>) {
-        return this.UserRepository.save(CreateBookDto);
+        return this.bookRepository.save(CreateBookDto);
     }
     
-    updateBook(id: number, book: Partial<BookEntity>) {
-        return this.UserRepository.update(id, book);
+    async updateBook(id: number, book: Partial<BookEntity>) {
+        await this.bookRepository.update(id, book);
+        return this.bookRepository.findOneBy({ id });
     }
 
     deleteBook(id: number) {
-        return this.UserRepository.delete(id);
+        return this.bookRepository.delete(id);
     }
 }

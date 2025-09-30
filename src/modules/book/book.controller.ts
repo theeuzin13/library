@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { BookService } from './book.service';
 import { CreateBookDto } from './dtos/createBook.dto';
 import { ApiTags, ApiResponse, ApiParam } from '@nestjs/swagger';
+import { UpdateBookDto } from './dtos/updateBook.dto';
 
 @ApiTags('books')
 @Controller()
@@ -32,10 +33,10 @@ export class BookController {
     @Put('books/:id')
     @ApiParam({ name: 'id', required: true, description: 'The ID of the book to update' })
     @ApiResponse({ status: 200, description: 'The updated book.' })
-    updateBook(@Param('id') id: number, @Body() book: Partial<CreateBookDto>) {
+    updateBook(@Param('id') id: number, @Body() book: UpdateBookDto) {
         return this.bookService.updateBook(id, book);
     }
-
+    
     @Delete('books/:id')
     @ApiParam({ name: 'id', required: true, description: 'The ID of the book to delete' })
     @ApiResponse({ status: 200, description: 'The book has been deleted.' })
